@@ -1,0 +1,22 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "keyvalapp.fullname" . }}-ingress
+  labels:
+  {{- include "keyvalapp.labels" . | nindent 4 }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: www.keyvalapp.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "keyvalapp.fullname" . }}
+                port:
+                  number: {{ .Values.service.port }}
+{{- end }}

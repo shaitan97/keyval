@@ -1,6 +1,6 @@
 FROM openjdk
 
-COPY build/libs/getSetKeyVal* /app/getSetKeyVal.jar
+COPY build/libs/getSetKeyVal* /app/keyval.jar
 
 RUN groupadd keyval --gid 1000 && useradd -M keyval --uid 1000 --gid 1000 && chmod +x /app/keyval.jar && chown -R keyval:keyval /app
 
