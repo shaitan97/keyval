@@ -1,0 +1,5 @@
+groups:
+  - name: countKeys
+    rules:
+    - record: job:http_requests_total:sum
+      expr: http_requests_total{method="POST", endpoint="set", status="200"}
